@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="mk">
+    <head>
+        <title>План за патување</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> 
+        
+        <link rel = "stylesheet"  href = "proekt.css">
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <header class="row">
+                    <div class="col-sm-4">
+                        <p style="color: white; font-size: 20px; margin-bottom: 0;">План за патување</p>
+                    </div>
+                    <div class="col-sm-8">  
+                        <nav>
+                            <a href="#opis">Почетна</a>
+                            <a href="#destinacii">Дестинации</a>
+                            <a href="#galerija" onclick="otvoriGrad(tekovenGrad)">Галерија</a>
+                            <a href="#planiranje">Планирање</a>
+                            <a href="#blog">Блог</a>
+                            <a href="#iskustva">Искуства</a>
+                            <a href="#anketa">Анкета</a>
+                            <a href="#najava">Најава</a>
+                        </nav>
+                    </div>
+            </header>
+       </div>
+
+        <div id="opis">
+            <h1 style="text-align: center; color: darkcyan; margin-bottom: 0;">Откриј ја твојата следна дестинација</h1>
+            <p style="text-align: center; font-size: larger; margin-bottom: 0; margin-top: 7px; color: rgb(143, 139, 139);">Истражувај градови, планирај трошоци и сподели искуства.</p>
+        </div>
+
+        <section class="container" id="najava">
+            <h2>Најави се</h2>
+
+            <div id="formaNajava">
+                <p>Корисничко име:</p>
+                <input type="text" id="korisnickoIme">
+
+                <p>Лозинка:</p>
+                <input type="password" id="lozinka">
+
+                <p>
+                    <input type="button" class="isprati" value="Најави се" onclick="najaviSe()">
+                </p>
+            </div>
+
+            <p id="porakaNajava"></p>
+
+            <input type="button" id="kopceOdjava" class="isprati" value="Одјави се" style="display:none;" onclick="odjaviSe()">
+        </section>
+
+        <div class="container" id="destinacii">
+                <h2 style="text-align: center;">Популарни дестинации</h2>
+
+                <p style="margin-bottom: 2px; margin-left: 10px; font-size: large;">Избери категорија:</p>
+                <select name="Izbor" id="kategorii" style="margin-left: 10px; margin-bottom: 18px;" onchange="filtriraj()">
+                    <option value="site" selected>Сите категории</option>
+                    <option value="more">Море</option>
+                    <option value="istorija">Историски знаменитости</option>
+                    <option value="umetnost">Уметност и музеи</option>
+                    <option value="shopping">Шопинг</option>
+                </select>
+
+                <p style="margin-bottom: 2px; margin-left: 10px; font-size: large;">Максимален буџет во евра:</p>
+                <input style="margin-left: 10px; margin-bottom: 18px;" type="number" id="filterBudzet" min="0" onchange="filtriraj()">
+
+                <input style="margin-bottom: 25px;" type="button" class="isprati" value="Додај дестинација"
+                    onclick="document.getElementById('novaForma').style.display='block'">
+
+                <div id="novaForma" style="display:none;">
+                    <h3>Нова дестинација</h3>
+
+                    <p>Име на град:</p>
+                    <input type="text" id="novoIme">
+
+                    <p>Опис:</p>
+                    <textarea id="novOpis" rows="3" cols="40"></textarea>
+
+                    <p>Категорија:</p>
+                    <select id="novaKategorija">
+                        <option value="more">Море</option>
+                        <option value="istorija">Историја</option>
+                        <option value="umetnost">Уметност</option>
+                        <option value="shopping">Шопинг</option>
+                    </select>
+
+                    <p>Проценета цена за 6 дена (€):</p>
+                    <input type="number" id="novaCena" min="0">
+
+                    <p>Фотографија 1:</p>
+                    <input type="text" id="novaSlika1">
+
+                    <p>Фотографија 2:</p>
+                    <input type="text" id="novaSlika2">
+
+                    <p>Фотографија 3:</p>
+                    <input type="text" id="novaSlika3">
+
+                    <p>Фотографија 4:</p>
+                    <input type="text" id="novaSlika4">
+
+                    <p>
+                        <input type="button" class="isprati"
+                            value="Зачувај дестинација"
+                            onclick="dodajDestinacija()">
+                    </p>
+                </div>
+
+                <div class="row" id="listaDestinacii">
+                    <div class="col-md-6 destinacija istorija umetnost shopping">
+                        <div class="card">
+                            <img src="Rim.jpg" alt="Рим" class="card-img-top">
+                            <div class="card-body">
+                                <h3 class="card-title">Рим</h3>
+                                <p class="card-text">
+                                    Главниот град на Италија, познат по Колосеумот, 
+                                    Римскиот форум, Ватикан и бројните историски знаменитости.
+                                </p>
+                                <p class="cena"></p>
+                                <a href="#galerija" class="btn kopce" onclick="otvoriGrad(0)">Истражи</a>
+                                <button type="button" class="izbrisiGrad" onclick="izbrisiDestinacija(0)">
+                                    Избриши
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 destinacija istorija umetnost shopping">
+                        <div class="card">
+                            <img src="Milano.jpg" alt="Милано" class="card-img-top">
+                            <div class="card-body">
+                                <h3 class="card-title">Милано</h3>
+                                <p class="card-text">
+                                    Град во северна Италија, познат по модата, катедралата Дуомо, шопингот 
+                                    и светски познатата оперска куќа Ла Скала.
+                                </p>
+                                <p class="cena"></p>
+                                <a href="#galerija" class="btn kopce" onclick="otvoriGrad(1)">Истражи</a>
+                                <button type="button" class="izbrisiGrad" onclick="izbrisiDestinacija(1)">
+                                    Избриши
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 destinacija more istorija umetnost shopping">
+                        <div class="card">
+                            <img src="Barselona.jpg" alt="Барселона" class="card-img-top">
+                            <div class="card-body">
+                                <h3 class="card-title">Барселона</h3>
+                                <p class="card-text">
+                                    Град на брегот на Средоземното Море, познат по Саграда Фамилија, 
+                                    архитектурата на Гауди и прекрасните плажи.
+                                </p>
+                                <p class="cena"></p>
+                                <a href="#galerija" class="btn kopce" onclick="otvoriGrad(2)">Истражи</a>
+                                <button type="button" class="izbrisiGrad" onclick="izbrisiDestinacija(2)">
+                                    Избриши
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 destinacija istorija umetnost shopping">
+                        <div class="card">
+                            <img src="Pariz.jpg" alt="Париз" class="card-img-top">
+                            <div class="card-body">
+                                <h3 class="card-title">Париз</h3>
+                                <p class="card-text">
+                                    Главниот град на Франција, познат по Ајфеловата кула, музејот Лувр, 
+                                    Триумфалната капија и бројните уметнички галерии и замоци.
+                                </p>
+                                <p class="cena"></p>
+                                <a href="#galerija" class="btn kopce" onclick="otvoriGrad(3)">Истражи</a>
+                                <button type="button" class="izbrisiGrad" onclick="izbrisiDestinacija(3)">
+                                    Избриши
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="col-md-6 destinacija more istorija">
+                        <div class="card">
+                            <img src="Split.jpg" alt="Сплит" class="card-img-top">
+                            <div class="card-body">
+                                <h3 class="card-title">Сплит</h3>
+                                <p class="card-text">
+                                    Град на јадранскиот брег, познат по Диоклецијановата палата, 
+                                    шеталиштето Рива и убавите плажи.
+                                </p>
+                                <p class="cena"></p>
+                                <a href="#galerija" class="btn kopce" onclick="otvoriGrad(4)">Истражи</a>
+                                <button type="button" class="izbrisiGrad" onclick="izbrisiDestinacija(4)">
+                                    Избриши
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 destinacija more istorija">
+                        <div class="card">
+                            <img src="Dubrovnik.jpg" alt="Дубровник" class="card-img-top">
+                            <div class="card-body">
+                                <h3 class="card-title">Дубровник</h3>
+                                <p class="card-text">
+                                    Историски град на југот на Хрватска, познат по стариот град, 
+                                    средновековните ѕидини и погледот кон Јадранското Море.
+                                </p>
+                                <p class="cena"></p>
+                                <a href="#galerija" class="btn kopce" onclick="otvoriGrad(5)">Истражи</a>
+                                <button type="button" class="izbrisiGrad" onclick="izbrisiDestinacija(5)">
+                                    Избриши
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <div class="col-md-6 destinacija umetnost shopping">
+                        <div class="card">
+                            <img src="London.jpg" alt="Лондон" class="card-img-top">
+                            <div class="card-body">
+                                <h3 class="card-title">Лондон</h3>
+                                <p class="card-text">
+                                    Главниот град на Обединетото Кралство, познат по Биг Бен, Бакингемската палата, 
+                                    Лондонското око и светски познатите музеи.
+                                </p>
+                                <p class="cena"></p>
+                                <a href="#galerija" class="btn kopce" onclick="otvoriGrad(6)">Истражи</a>
+                                <button type="button" class="izbrisiGrad" onclick="izbrisiDestinacija(6)">
+                                    Избриши
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 destinacija istorija umetnost">
+                        <div class="card">
+                            <img src="Praga.jpg" alt="Прага" class="card-img-top">
+                            <div class="card-body">
+                                <h3 class="card-title">Прага</h3>
+                                <p class="card-text">
+                                    Главниот град на Чешка, познат по Карловиот мост, Прашкиот замок, 
+                                    Стариот градски плоштад и историската архитектура.
+                                </p>
+                                <p class="cena"></p>
+                                <a href="#galerija" class="btn kopce" onclick="otvoriGrad(7)">Истражи</a>
+                                <button type="button" class="izbrisiGrad" onclick="izbrisiDestinacija(7)">
+                                    Избриши
+                                </button>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+        </div>
+
+        <div class="container" id="galerija" style="display: none; background-color:white; padding:20px; margin-top:25px; border-radius:12px;">
+            <h2 id="imeGrad" style="text-align:center;"></h2>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <img id="slika0" class="img-fluid" alt="Прва фотографија">
+                    <p style="margin-top:15px;">
+                        <button onclick="glasaj(0,'like')">Like</button>
+                        <span id="likes0">0</span>
+
+                        <button onclick="glasaj(0,'dislike')">Dislike</button>
+                        <span id="dislikes0">0</span>
+                    </p>
+
+                    <p>Коментар за првата фотографија:</p>
+                    <textarea id="tekst0" rows="3" cols="40"></textarea>
+                    <button class="btn btn-info" style="margin-top:10px;" onclick="dodajKomentar(0)">
+                        Додај коментар
+                    </button>
+                    <ul id="komentari0"></ul>
+                </div>
+
+                <div class="col-md-6">
+                    <img id="slika1" class="img-fluid" alt="Втора фотографија">
+                    <p style="margin-top:15px;">
+                        <button onclick="glasaj(1,'like')">Like</button>
+                        <span id="likes1">0</span>
+
+                        <button onclick="glasaj(1,'dislike')">Dislike</button>
+                        <span id="dislikes1">0</span>
+                    </p>
+
+                    <p>Коментар за втората фотографија:</p>
+                    <textarea id="tekst1" rows="3" cols="40"></textarea>
+                    <button class="btn btn-info" style="margin-top:10px;" onclick="dodajKomentar(1)">
+                        Додај коментар
+                    </button>
+                    <ul id="komentari1"></ul>
+                </div>
+                <div class="col-md-6">
+                    <img id="slika2" class="img-fluid" alt="Трета фотографија">
+
+                    <p style="margin-top:15px;">
+                        <button onclick="glasaj(2,'like')">Like</button>
+                        <span id="likes2">0</span>
+
+                        <button onclick="glasaj(2,'dislike')">Dislike</button>
+                        <span id="dislikes2">0</span>
+                    </p>
+
+                    <p>Коментар за третата фотографија:</p>
+                    <textarea id="tekst2" rows="3" cols="40"></textarea>
+
+                    <button class="btn btn-info" style="margin-top:10px;"
+                            onclick="dodajKomentar(2)">
+                        Додај коментар
+                    </button>
+
+                    <ul id="komentari2"></ul>
+                </div>
+
+                <div class="col-md-6">
+                    <img id="slika3" class="img-fluid" alt="Четврта фотографија">
+
+                    <p style="margin-top:15px;">
+                        <button onclick="glasaj(3,'like')">Like</button>
+                        <span id="likes3">0</span>
+
+                        <button onclick="glasaj(3,'dislike')">Dislike</button>
+                        <span id="dislikes3">0</span>
+                    </p>
+
+                    <p>Коментар за четвртата фотографија:</p>
+                    <textarea id="tekst3" rows="3" cols="40"></textarea>
+
+                    <button class="btn btn-info" style="margin-top:10px;"
+                            onclick="dodajKomentar(3)">
+                        Додај коментар
+                    </button>
+
+                    <ul id="komentari3"></ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container" id="planiranje">
+            <h2>Планирај го твоето патување</h2>
+            <div style="margin: 7px;">
+                
+                <form action="" id="formaPlan">
+                    <p style="font-size: larger; margin-bottom: 0;">Избери град:</p>
+                    <select id="grad" name="grad" required>
+                        <option value="Рим">Рим</option>
+                        <option value="Милано">Милано</option>
+                        <option value="Барселона">Барселона</option>
+                        <option value="Париз">Париз</option>
+                        <option value="Сплит">Сплит</option>
+                        <option value="Дубровник">Дубровник</option>
+                        <option value="Лондон">Лондон</option>
+                        <option value="Прага">Прага</option>
+                    </select>
+
+                    <p style="font-size: larger; margin-bottom: 0;">Внеси буџет во евра:</p>
+                    <input id="budzet" type="number" min="200" max="2000" value="500" required> 
+
+                    <p style="font-size: larger; margin-bottom: 0;" >Внеси број на денови:</p>
+                    <input type="number" id="denovi" min="4" max="10" value="6" required> 
+                    
+                    <p style="font-size: larger; margin-bottom: 0;" >Внеси цена на превоз во евра:</p>
+                    <input type="number" id="prevoz" min="0" value="60" required> 
+
+                    <p style="font-size: larger; margin-bottom: 0;" >Внеси дневни трошоци во евра:</p>
+                    <input type="number" id="dnevno" min="0" value="70" required> 
+
+                    <input class="isprati" type="button" id="Submit" value="Додај во планот" onclick="dodajVoPlan()"> 
+                </form>
+            </div>
+        </div>
+
+        <div class="container" id="mojPlanDel"> 
+            <h3 style="text-align: center; margin: 15px;">Мој план за патување</h3>
+            <ul id="mojPlan">
+
+            </ul>
+        </div>
+        
+        <section class="container" id="blog">
+            <h2 style="text-align: center;">Патнички блог и туристички водич</h2>
+
+            <p>Откриј ги најинтересните знаменитости и места што вреди да ги посетиш во секој од нашите градови.</p>
+            <article class="vodicGrad">
+                <h3>Рим – 10 места што мора да ги посетиш</h3>
+                <ol>
+                    <li><strong>Колосеум</strong> – Антички римски амфитеатар и еден од најпознатите симболи на градот.</li>
+                    <li><strong>Римски форум</strong> – Археолошки комплекс што бил центар на јавниот живот во Стариот Рим.</li>
+                    <li><strong>Пантеон</strong> – Антички храм препознатлив по големата купола.</li>
+                    <li><strong>Фонтана ди Треви</strong> – Позната барокна фонтана во која туристите традиционално фрлаат монети.</li>
+                    <li><strong>Шпански скали</strong> – Познати скали што го поврзуваат Шпанскиот плоштад со црквата Тринита деи Монти.</li>
+                    <li><strong>Базилика Свети Петар</strong> – Импозантна базилика во Ватикан, со голема религиозна и уметничка важност.</li>
+                    <li><strong>Ватикански музеи</strong> – Музеи со богати уметнички колекции и прочуената Сикстинска капела.</li>
+                    <li><strong>Пјаца Навона</strong> – Историски плоштад со прекрасни фонтани и барокна архитектура.</li>
+                    <li><strong>Замок Сант Анџело</strong> – Историска тврдина покрај реката Тибар.</li>
+                    <li><strong>Вила Боргезе</strong> – Прекрасен парк во Рим со зелени градини, музеи, езерце и живописни патеки за прошетка.</li>                
+                </ol>
+            </article>
+
+            <article class="vodicGrad">
+                <h3>Милано – 10 места што мора да ги посетиш</h3>
+                <ol>
+                    <li><strong>Катедрала Дуомо</strong> – Импресивна готска катедрала и најпознатата знаменитост на Милано.</li>
+                    <li><strong>Галерија Виторио Емануеле II</strong> – Историска трговска галерија со луксузни продавници и прекрасна архитектура.</li>
+                    <li><strong>Театар Ла Скала</strong> – Една од најпознатите оперски куќи во светот.</li>
+                    <li><strong>Замок Сфорцеско</strong> – Историски замок со музеи и уметнички колекции.</li>
+                    <li><strong>Пинакотека Брера</strong> – Позната галерија со значајни дела од италијанската уметност.</li>
+                    <li><strong>Санта Марија деле Грацие</strong> – Црква во која се наоѓа „Тајната вечера“ од Леонардо да Винчи.</li>
+                    <li><strong>Стадион Сан Сиро</strong> – Легендарен фудбалски стадион поврзан со Милан и Интер.</li>
+                    <li><strong>Навиљи</strong> – Живописен кварт со канали, ресторани и кафулиња.</li>
+                    <li><strong>Парк Семпионе</strong> – Голем градски парк во близина на замокот Сфорцеско.</li>
+                    <li><strong>Боско Вертикале</strong> – Современи станбени кули препознатливи по зеленилото на фасадите.</li>
+                </ol>
+            </article>
+
+            <article class="vodicGrad">
+                <h3>Барселона – 10 места што мора да ги посетиш</h3>
+                <ol>
+                    <li><strong>Саграда Фамилија</strong> – Позната базилика проектирана од архитектот Антони Гауди.</li>
+                    <li><strong>Парк Гуељ</strong> – Парк со шарени мозаици, необична архитектура и прекрасни погледи.</li>
+                    <li><strong>Каса Батљо</strong> – Една од најпознатите модернистички градби на Гауди.</li>
+                    <li><strong>Каса Мила</strong> – Препознатлива градба со необична фасада и интересен покрив.</li>
+                    <li><strong>Готски кварт</strong> – Историски дел од градот со тесни улици и средновековни градби.</li>
+                    <li><strong>Ла Рамбла</strong> – Позната пешачка улица со продавници, ресторани и улични уметници.</li>
+                    <li><strong>Плажа Барселонета</strong> – Популарна градска плажа на Средоземното Море.</li>
+                    <li><strong>Стадион Камп Ноу</strong> – Познатиот стадион на ФК Барселона.</li>
+                    <li><strong>Монжуик</strong> – Рид со градини, музеи и панорамски поглед кон градот.</li>
+                    <li><strong>Музеј Пикасо</strong> – Музеј посветен на животот и творештвото на Пабло Пикасо.</li>
+                </ol>
+            </article>
+
+            <article class="vodicGrad">
+                <h3>Париз – 10 места што мора да ги посетиш</h3>
+                <ol>
+                    <li><strong>Ајфелова кула</strong> – Најпознатиот симбол на Париз, со прекрасен поглед кон градот.</li>
+                    <li><strong>Музеј Лувр</strong> – Светски познат музеј во кој се наоѓа Мона Лиза.</li>
+                    <li><strong>Триумфална капија</strong> – Историски споменик на плоштадот Шарл де Гол.</li>
+                    <li><strong>Шанзелизе</strong> – Позната авенија со продавници, ресторани и историски знаменитости.</li>
+                    <li><strong>Катедрала Нотр Дам</strong> – Позната готска катедрала на островот Ил де ла Сите.</li>
+                    <li><strong>Базилика Сакре Кер</strong> – Прекрасна бела базилика на ридот Монмартр.</li>
+                    <li><strong>Монмартр</strong> – Уметнички кварт со шармантни улици и кафулиња.</li>
+                    <li><strong>Музеј Орсе</strong> – Музеј познат по својата колекција импресионистичка уметност.</li>
+                    <li><strong>Река Сена</strong> – Реката што минува низ Париз и нуди прекрасни можности за прошетка и пловење.</li>
+                    <li><strong>Луксембуршки градини</strong> – Прекрасен парк во Париз со фонтани, цветни градини, скулптури и простори за одмор.</li>                
+                </ol>
+            </article>
+
+            <article class="vodicGrad">
+                <h3>Сплит – 10 места што мора да ги посетиш</h3>
+                <ol>
+                    <li><strong>Диоклецијанова палата</strong> – Античка римска палата во срцето на историскиот центар.</li>
+                    <li><strong>Перистил</strong> – Историски плоштад во рамките на Диоклецијановата палата.</li>
+                    <li><strong>Катедрала Свети Дујам</strong> – Катедрала со препознатлива камбанарија и богата историја.</li>
+                    <li><strong>Рива</strong> – Познатото крајбрежно шеталиште со палми и кафулиња.</li>
+                    <li><strong>Парк Марјан</strong> – Шумски парк со патеки и прекрасни погледи кон Сплит.</li>
+                    <li><strong>Плажа Бачвице</strong> – Популарна песочна плажа во близина на центарот.</li>
+                    <li><strong>Стадион Пољуд</strong> – Познатиот фудбалски стадион на Хајдук Сплит.</li>
+                    <li><strong>Галерија Мештровиќ</strong> – Галерија посветена на скулпторот Иван Мештровиќ.</li>
+                    <li><strong>Тврдина Клис</strong> – Историска тврдина во близина на Сплит со панорамски поглед.</li>
+                    <li><strong>Статуа на Гргур Нински</strong> – Позната скулптура во историскиот дел на градот.</li>
+                </ol>
+            </article>
+
+            <article class="vodicGrad">
+                <h3>Дубровник – 10 места што мора да ги посетиш</h3>
+                <ol>
+                    <li><strong>Градски ѕидини</strong> – Средновековни ѕидини што го опкружуваат стариот град.</li>
+                    <li><strong>Страдун</strong> – Главната улица во историскиот центар на Дубровник.</li>
+                    <li><strong>Тврдина Ловријенац</strong> – Импресивна тврдина изградена на карпа над морето.</li>
+                    <li><strong>Кнежев двор</strong> – Историска палата што денес служи како музеј.</li>
+                    <li><strong>Палата Спонза</strong> – Прекрасна историска градба со готски и ренесансни елементи.</li>
+                    <li><strong>Дубровничка катедрала</strong> – Барокна катедрала во стариот град.</li>
+                    <li><strong>Старо пристаниште</strong> – Живописно пристаниште со традиционални бродови.</li>
+                    <li><strong>Францискански манастир</strong> – Историски манастир познат по својата стара аптека.</li>
+                    <li><strong>Планина Срѓ</strong> – Видиковец со прекрасен поглед кон Дубровник и Јадранското Море.</li>
+                    <li><strong>Остров Локрум</strong> – Зелен остров во близина на градот, погоден за еднодневна посета.</li>
+                </ol>
+            </article>
+
+            <article class="vodicGrad">
+                <h3>Лондон – 10 места што мора да ги посетиш</h3>
+                <ol>
+                    <li><strong>Биг Бен</strong> – Препознатливата часовничка кула покрај британскиот парламент.</li>
+                    <li><strong>Тауер Бриџ</strong> – Познат мост над реката Темза.</li>
+                    <li><strong>Лондонската кула</strong> – Историска тврдина во која се чуваат британските кралски регалии.</li>
+                    <li><strong>Бакингемска палата</strong> – Официјална лондонска резиденција на британскиот монарх.</li>
+                    <li><strong>Лондонско око</strong> – Големо панорамско тркало со поглед кон градот.</li>
+                    <li><strong>Британски музеј</strong> – Познат музеј со историски предмети од целиот свет.</li>
+                    <li><strong>Хајд парк</strong> – Еден од најпознатите паркови во Лондон.</li>
+                    <li><strong>Вестминстерска опатија</strong> – Историска црква во која се одржуваат кралски церемонии.</li>
+                    <li><strong>Стадион Вембли</strong> – Национален фудбалски стадион на Англија.</li>
+                    <li><strong>Камден Маркет</strong> – Познат лондонски пазар со улична храна, уникатни продавници и жива атмосфера.</li>                
+                </ol>
+            </article>
+
+            <article class="vodicGrad">
+                <h3>Прага – 10 места што мора да ги посетиш</h3>
+                <ol>
+                    <li><strong>Карлов мост</strong> – Историски камен мост со статуи над реката Влтава.</li>
+                    <li><strong>Прашки замок</strong> – Голем историски комплекс со палати и цркви.</li>
+                    <li><strong>Староградски плоштад</strong> – Познат плоштад со прекрасна историска архитектура.</li>
+                    <li><strong>Астрономски часовник</strong> – Средновековен часовник на старото градско собрание.</li>
+                    <li><strong>Катедрала Свети Вит</strong> – Импресивна готска катедрала во Прашкиот замок.</li>
+                    <li><strong>Вацлавски плоштад</strong> – Важен градски плоштад со продавници и историски споменици.</li>
+                    <li><strong>Вишехрад</strong> – Историска тврдина со прекрасен поглед кон Влтава.</li>
+                    <li><strong>Танцувачка куќа</strong> – Позната современа градба со необична архитектура.</li>
+                    <li><strong>Еврејски кварт</strong> – Историски дел од Прага со синагоги и музеи.</li>
+                    <li><strong>Петринска кула</strong> – Позната видиковна кула инспирирана од Ајфеловата кула, која нуди прекрасен панорамски поглед кон Прага.</li>                
+                </ol>
+            </article>
+        </section>
+
+        <section class="container" id="iskustva">
+            <h2 style="text-align: center;">Искуства од посетители</h2>
+
+            <p>Сподели го твоето искуство од патувањето и помогни им на другите посетители.</p>
+
+            <div id="formaObjava">
+                <h3>Напиши објава</h3>
+
+                <p>Твоето име:</p>
+                <input type="text" id="avtorObjava">
+
+                <p>Избери град:</p>
+                <select id="gradObjava">
+                    <option value="Рим">Рим</option>
+                    <option value="Милано">Милано</option>
+                    <option value="Барселона">Барселона</option>
+                    <option value="Париз">Париз</option>
+                    <option value="Сплит">Сплит</option>
+                    <option value="Дубровник">Дубровник</option>
+                    <option value="Лондон">Лондон</option>
+                    <option value="Прага">Прага</option>
+                </select>
+
+                <p>Наслов на објавата:</p>
+                <input type="text" id="naslovObjava">
+
+                <p>Твоето искуство:</p>
+                <textarea id="tekstObjava" rows="5" cols="50"></textarea>
+
+                <input type="button" class="isprati"
+                    value="Објави искуство"
+                    onclick="dodajObjava()">
+            </div>
+
+            <h3>Објави од посетители</h3>
+
+            <div id="listaObjavi"></div>
+        </section>
+
+        <section class="container" id="anketa">
+            <h2 style="text-align: center;">Анкета за посетители</h2>
+            <p>Твоето мислење ни е важно! Помогни ни да ја подобриме нашата веб-страница.</p>
+
+            <form id="formaAnketa">
+
+                <h3>Лични податоци</h3>
+
+                <p>Име и презиме: *</p>
+                <input type="text" id="imeAnketa" placeholder="Внеси име и презиме" required>
+
+                <p>Е-пошта: *</p>
+                <input type="email" id="emailAnketa" placeholder="example@email.com" required>
+
+                <h3>Твоето мислење за страницата</h3>
+
+                <div class="anketaPrasanje">
+                    <p>1. Како би ја оценил/а нашата веб-страница?</p>
+
+                    <input type="radio" id="ocena1" name="ocena" value="Одлична">
+                    <label for="ocena1">Одлична</label>
+
+                    <input type="radio" id="ocena2" name="ocena" value="Добра">
+                    <label for="ocena2">Добра</label>
+
+                    <input type="radio" id="ocena3" name="ocena" value="Просечна">
+                    <label for="ocena3">Просечна</label>
+
+                    <input type="radio" id="ocena4" name="ocena" value="Лоша">
+                    <label for="ocena4">Лоша</label>
+                </div>
+
+                <div class="anketaPrasanje">
+                    <p>2. Дали страницата е лесна за користење?</p>
+
+                    <input type="radio" id="lesno1" name="lesno" value="Да">
+                    <label for="lesno1">Да</label>
+
+                    <input type="radio" id="lesno2" name="lesno" value="Делумно">
+                    <label for="lesno2">Делумно</label>
+
+                    <input type="radio" id="lesno3" name="lesno" value="Не">
+                    <label for="lesno3">Не</label>
+                </div>
+
+                <div class="anketaPrasanje">
+                    <p>3. Дали би ја препорачал/а страницата на други?</p>
+
+                    <input type="radio" id="preporaka1" name="preporaka" value="Да">
+                    <label for="preporaka1">Да</label>
+
+                    <input type="radio" id="preporaka2" name="preporaka" value="Можеби">
+                    <label for="preporaka2">Можеби</label>
+
+                    <input type="radio" id="preporaka3" name="preporaka" value="Не">
+                    <label for="preporaka3">Не</label>
+                </div>
+
+                <div class="anketaPrasanje">
+                    <p>4. Кој дел од страницата најмногу ти се допадна?</p>
+
+                    <select id="omilenDel">
+                        <option value="">Избери одговор</option>
+                        <option value="Дестинации">Дестинации</option>
+                        <option value="Галерија">Галерија</option>
+                        <option value="Планирање">Планирање на патување</option>
+                        <option value="Блог">Туристички блог</option>
+                        <option value="Искуства">Искуства од посетители</option>
+                    </select>
+                </div>
+
+                <div class="anketaPrasanje">
+                    <p>5. Што би сакал/а да подобриме?</p>
+
+                    <select id="podobruvanje">
+                        <option value="">Избери одговор</option>
+                        <option value="Дизајн">Дизајн на страницата</option>
+                        <option value="Дестинации">Повеќе дестинации</option>
+                        <option value="Фотографии">Повеќе фотографии</option>
+                        <option value="Информации">Повеќе туристички информации</option>
+                        <option value="Ништо">Ништо, задоволен/на сум</option>
+                    </select>
+                </div>
+
+                <div class="anketaPrasanje">
+                    <p>6. Имаш ли дополнителни коментари или предлози?</p>
+
+                    <textarea id="komentarAnketa" rows="5" cols="50"
+                            placeholder="Напиши го твоето мислење..."></textarea>
+                </div>
+
+                <p>* Задолжителни полиња</p>
+ 
+                <input type="button" class="isprati" id="kopceAnketa" value="Испрати анкета">
+
+                <p id="rezultatAnketa"></p>
+            </form>
+        </section>
+
+        <footer id="podnozje" class="container-fluid">
+            <div class="container">
+                <h3>План за патување</h3>
+                <p>Откриј нови дестинации, планирај го своето патување
+                и сподели незаборавни искуства.</p>
+                <p>
+                    <a href="#opis">Врати се на почеток</a>
+                </p>
+                <p>&copy; 2026 План за патување. Сите права се задржани.</p>
+            </div>
+        </footer>
+
+        <script src="proekt.js" defer></script>
+    </body>
+</html>

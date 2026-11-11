@@ -1,0 +1,422 @@
+
+header {
+    background-color: darkcyan;
+    padding: 15px 25px;
+}
+
+nav {
+    text-align: right;
+    padding-right: 15px;
+}
+
+nav a {
+    color: white;
+    font-size: 20px;
+    margin-right: 10px;
+    margin-bottom: 0;
+}
+
+
+#najava {
+    background-color: white;
+    padding: 25px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: -4px 4px 12px lightsteelblue;
+    max-width: 500px;
+}
+
+#najava h2 {
+    color: darkcyan;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#formaNajava p {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+#formaNajava input[type="text"], #formaNajava input[type="password"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid lightsteelblue;
+    border-radius: 5px;
+}
+
+#porakaNajava {
+    color: darkcyan;
+    font-size: 18px;
+    margin-top: 15px;
+}
+
+#kopceOdjava {
+    margin-top: 10px;
+}
+
+
+#opis {
+    background-color:rgb(217, 236, 247); 
+    box-shadow: -15px 0 40px rgb(173, 197, 211); 
+    padding: 25px;
+}
+
+#destinacii .card-title {
+    color: darkcyan;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+.kopce {
+    background-color: darkcyan;
+    color: white;
+    width: 110px;
+    height: 40px;
+    text-align: center;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+#destinacii .card {
+    margin-bottom: 20px;
+    height: 650px;
+    position: relative;
+}
+
+#destinacii .card-img-top {
+    height: 330px;
+}
+
+#destinacii .card-text {
+    text-align: justify;
+}
+
+#destinacii .card-body {
+    padding-bottom: 20px;
+}
+
+#destinacii .cena {
+    position: absolute;
+    bottom: 85px;
+    left: 20px;
+    right: 20px;
+    margin-bottom: 0;
+}
+
+@media screen and (max-width: 991px) {
+    #destinacii .card-text {
+        text-align: left;
+    }
+
+    #destinacii .card {
+        height: 720px;
+    }
+}
+
+h2 {
+    margin-top: 20px; 
+    margin-bottom: 20px; 
+    color: darkcyan;
+}
+
+
+.isprati {
+    background-color: darkcyan;
+    color: white;
+    width: 220px;
+    height: 45px;
+    text-align: center;
+    display: block;
+    margin-top: 15px;
+    border-radius: 4px;
+    border-color: rgb(5, 101, 101);
+    box-shadow: -2px 2px 10px rgb(163, 161, 161);
+}
+
+#planiranje, #mojPlanDel {
+    background-color: white;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: -4px 4px 12px lightsteelblue;
+    padding-top: 13px;
+}
+
+#planiranje h2 {
+    margin-top: 8px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: darkcyan;
+}
+
+h3 {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: darkcyan;
+}
+
+.izbrisi {
+    background-color: crimson;
+    color: white;
+    border-radius: 5px;
+    border-color: rgb(168, 11, 42);
+    padding: 6px;
+    margin: 10px;
+    font-size: 16px;
+}
+
+#mojPlan li {
+    font-size: larger;
+    background-color: aliceblue;
+    list-style-type: none;
+    padding: 12px;
+    border-radius: 7px;
+    box-shadow: -2px 2px 10px rgb(163, 161, 161);
+    margin-top: 5px;
+    margin-bottom: 13px;
+    font-weight: bold;
+}
+
+#galerija {
+    border: 1px solid lightsteelblue;
+    box-shadow: -4px 4px 12px lightsteelblue;
+    margin-bottom: 30px;
+}
+
+#galerija h2 {
+    color: darkcyan;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid lightsteelblue;
+}
+
+#galerija img {
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    background-color: aliceblue;
+    border-radius: 8px;
+}
+
+#galerija textarea {
+    width: 100%;
+    max-width: 100%;
+}
+
+#galerija .btn {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+#novaForma {
+    background-color: white;
+    padding: 25px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: -4px 4px 12px lightsteelblue;
+    max-width: 100%;
+}
+
+#novaForma p {
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+#destinacii .izbrisiGrad {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    background-color: crimson;
+    color: white;
+    width: 95px;
+    height: 40px;
+    border-radius: 5px;
+}
+
+#blog {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#blog h2 {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.vodicGrad {
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-radius: 12px;
+    box-shadow: -4px 4px 12px lightsteelblue;
+}
+
+.vodicGrad h3 {
+    color: darkcyan;
+    margin-bottom: 20px;
+    border-bottom: 1px solid lightsteelblue;
+    padding-bottom: 12px;
+}
+
+.vodicGrad ol {
+    padding-left: 25px;
+}
+
+.vodicGrad li {
+    margin-bottom: 15px;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.vodicGrad strong {
+    color: darkcyan;
+}
+
+
+#iskustva {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#iskustva h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#formaObjava {
+    background-color: white;
+    padding: 25px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: -4px 4px 12px lightsteelblue;
+}
+
+#formaObjava p {
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+#formaObjava input[type="text"], #formaObjava select, #formaObjava textarea {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    padding: 8px;
+    border: 1px solid lightsteelblue;
+    border-radius: 5px;
+}
+
+#listaObjavi .objava {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: -4px 4px 12px lightsteelblue;
+}
+
+#listaObjavi .objava h4 {
+    color: darkcyan;
+    margin-bottom: 10px;
+}
+
+#listaObjavi .objava p {
+    margin-bottom: 10px;
+}
+
+
+#anketa {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#anketa h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#formaAnketa {
+    background-color: white;
+    padding: 25px;
+    margin-top: 20px;
+    border-radius: 12px;
+    box-shadow: -4px 4px 12px lightsteelblue;
+}
+
+#formaAnketa h3 {
+    color: darkcyan;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#formaAnketa p {
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+#formaAnketa input[type="text"],
+#formaAnketa input[type="email"],
+#formaAnketa select,
+#formaAnketa textarea {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    padding: 10px;
+    border: 1px solid lightsteelblue;
+    border-radius: 5px;
+}
+
+.anketaPrasanje {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: aliceblue;
+    border-radius: 8px;
+}
+
+.anketaPrasanje p {
+    font-weight: bold;
+}
+
+.anketaPrasanje label {
+    margin-right: 15px;
+    margin-bottom: 10px;
+}
+
+#rezultatAnketa {
+    color: darkcyan;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+#podnozje {
+    background-color: darkcyan;
+    color: white;
+    text-align: center;
+    padding: 30px 15px;
+    margin-top: 40px;
+}
+
+#podnozje h3 {
+    color: white;
+    margin-bottom: 15px;
+}
+
+#podnozje p {
+    margin-bottom: 12px;
+}
+
+#podnozje a {
+    color: white;
+    text-decoration: underline;
+}
+
+#podnozje a:hover {
+    color: lightcyan;
+}
